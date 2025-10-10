@@ -9,9 +9,11 @@ from threading import *
 serverName = '127.0.0.1'
 serverPort = 55551
 
-def client(fichier):
+def client(fichier,client):
+    print("------------Client n°",client,"------------")
+    print("Je demande l'URI :",fichier)
+    print("-------------------------------------------")
     def lire_reponse(clientSocket):
-        print("Réception et traitement de la réponse du relai")
     # Lire la réponse HTTP ligne par ligne pour récupérer l'en-tête (de longueur variable selon la réponse)
         reponse = b""
         while True:
@@ -88,8 +90,8 @@ def client(fichier):
 # on cree autant de thread que de client
 from random import randint
 requete = ['film1.txt',"foo.txt","foo.txt STATS","cochon.txt","cochon.txt STATS","musique1.txt","musique1.txt STATS"]
-for _ in range(5):
+for n_client in range(5):
     i = randint(0,len(requete)-1)
-    Thread(target=client,args=(requete[i],)).start()
+    Thread(target=client,args=(requete[i],n_client)).start()
     
            
