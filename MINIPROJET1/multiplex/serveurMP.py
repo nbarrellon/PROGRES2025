@@ -17,7 +17,7 @@ def get_local_ip():
 my_poll = poll()
 serverPort = 8080 #en lieu et place du port habituel 80
 serverSocket = socket(AF_INET,SOCK_STREAM)
-serverSocket.bind(('', serverPort))  # '' signifie "toutes les interfaces réseau disponibles"
+serverSocket.bind(('0.0.0.0', serverPort))  # '' signifie "toutes les interfaces réseau disponibles"
 serverSocket.listen()
 sockets = {serverSocket.fileno(): serverSocket}
 # retrieve socket object from fileno

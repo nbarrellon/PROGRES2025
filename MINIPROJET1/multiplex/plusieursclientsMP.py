@@ -7,7 +7,7 @@ from threading import *
 #-------------------------------------------------------------
 # Informations de connexion au relai
 serverName = '127.0.0.1'
-serverPort = 55551
+serverPort = 8080
 
 def client(fichier,client):
     print("------------Client n°",client,"------------")
