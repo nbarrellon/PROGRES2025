@@ -22,15 +22,12 @@ L'ensemble tourne. Le cache conserve bien les réponses correspondant aux diffé
 redemander au serveur si jamais mais... uniquement pour des fichiers texte (.txt). En effet, je me suis heurté 
 à un souci quand j'ai essayé de ré-écrire un fichier PDF envoyé par le serveur par exemple. 
 Certains octets ne pouvaient être encodés en utf-8 et donc impossibles à écrire dans un fichier.
-
 J'ai tenté de discriminer fichier txt et autres fichiers mais je n'ai pas réussi :-(
-
 Le client enregiste le contenu de la réponse HTTP du serveur dans un fichier
-
 nom_du_fichier_copy.txt dans le répertoire courant.
 
 2) SNIFFEUR
-Tout semble fonctionner. L'appel aux statistiques se fait lors de la requête de l'URI 
+L'appel aux statistiques se fait lors de la requête de l'URI 
 en ajoutant STATS dans le fichier demandé
 Quel fichier voulez-vous ? film1.txt STATS
 Si le relai détecte cette commande, il n'appelle pas le serveur mais construit une réponse des statistiques
@@ -38,11 +35,11 @@ concernant ce fichier (s'il existe) et renvoie une réponse HTTP contenant ces S
 Le client enregistre ces stats dans une fichier film1_STATS.txt dans le répertoire courant.
 
 3) PROXY
-Tout semble fonctionner. Une réponse 400 Bad request est demandée si un fichier interdit est demandé.
+Tout semble fonctionner. Une réponse 400 Bad request est retorunée si un fichier interdit est demandé.
 Le fichier de log s'affiche donnant combien de fois une URI interdite a été demandée et par qui à quelle heure
 
 4) TUNNEL DE RELAI.
-Tout semble fonctionner. 
+Tout semble fonctionner même avec plusieurs clients. 
 Pour tirer profit des fonctionnalités de chaque relai, il convient de les lancer "dans le bon ordre !"
 - Le relai CACHE est connecté au serveur (127.0.0.1,8080)
 - Le relai PROXY est connecté au relai CACHE (127.0.0.1,55553)
