@@ -1,4 +1,8 @@
-import sys
+#Nils BARRELLON 21401602
+#Relai PROXY
+#Renvoie un message d'erreur "Access denied" sir l'URI demandée fait partie d'une blacklist
+#stockée dans le fichier config.txt
+
 from socket import *
 from struct import *
 from recvallTCP import *

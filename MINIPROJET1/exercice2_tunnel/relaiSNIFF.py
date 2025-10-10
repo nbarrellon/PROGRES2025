@@ -1,4 +1,8 @@
-import sys
+#Nils BARRELLON 21401602
+#Relai SNIFFEUR
+#Garde une trace de ce qui a été demandé dans un dictionnaire
+#Peut renvoyer les statistiques concernant une URI si la requête est GET nomfichier STATS
+
 from socket import *
 from struct import *
 from recvallTCP import *

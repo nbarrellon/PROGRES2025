@@ -1,3 +1,6 @@
+#Nils BARRELLON 21401602
+#Permet de dresser les statistiques d'une URI à partir du dictionnaire stocké par le Relai SNIFFEUR
+
 from datetime import datetime
 
 def decodage_reponse(reponse):

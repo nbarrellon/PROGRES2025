@@ -1,3 +1,8 @@
+#Nils BARRELLON 21401602
+#Relai cache. Ne sollicite pas le serveur si une URI a déjà été demandée
+#Garde donc les réponses aux URI demandées dans un dictionnaire pour les envoyer si
+#elles sont re-demandées.
+
 import sys
 from socket import *
 from struct import *
