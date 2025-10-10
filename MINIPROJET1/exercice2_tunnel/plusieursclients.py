@@ -87,7 +87,7 @@ def client(requete):
 #-------------------------------------------------------------------
 # on cree autant de thread que de client
 from random import randint
-requete = ['GET film1.txt',"GET foo.txt","GET foo.txt STAT","GET cochon.txt","GET cochon.txt STATS","GET musique1.txt","GET musique1.txt STATS"]
+requete = ['GET film1.txt',"GET foo.txt","GET foo.txt STATS","GET cochon.txt","GET cochon.txt STATS","GET musique1.txt","GET musique1.txt STATS"]
 for _ in range(5):
     i = randint(0,len(requete)-1)
     Thread(target=client,args=(requete[i],)).start()
