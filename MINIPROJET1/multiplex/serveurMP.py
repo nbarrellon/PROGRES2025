@@ -27,11 +27,16 @@ to_send = dict()
 # bytes to be sent from fileno, that have been processed
 while True:
     print("-----------------------------------------------")
-    print("Serveur en écoute sur l'adresse IP", get_local_ip())
+    print("Serveur en écoute sur l'adresse IP", get_local_ip()," ou 127.0.0.1")
     print("Port d'écoute :",serverPort)
     print("----------------------------------------------")
+    print("Dico received:",received)
+    print("Dico to_send:",to_send)
+    print("My poll:",my_poll)
     for fd, event in my_poll.poll():
+        
         if event & (POLLHUP|POLLERR|POLLNVAL):
+            print("POLLHUP,POLLERR ou POLLNVAL")
             received.pop(fd)
             to_send.pop(fd)
             my_poll.unregister(fd)
@@ -43,8 +48,10 @@ while True:
             my_poll.register(connectionSocket,POLLIN)
         else:
             if event & POLLIN:
+                print("POLLIN")
                 try:
                     data = sockets[fd].recv(4096)
+                    print(f"Requête reçu de {address}:{data.decode('utf-8')}")
                     if not data:
                         sockets[fd].close()
                         continue
@@ -58,6 +65,7 @@ while True:
                     sockets[fd].close()
                     continue
             if event & POLLOUT:
+                print("POLLOUT")
                 data = received.pop(fd).decode("utf-8")
                 data = data.upper().encode("utf-8")
                 if fd in to_send:
