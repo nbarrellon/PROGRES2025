@@ -9,7 +9,7 @@ from threading import *
 serverName = '127.0.0.1'
 serverPort = 55551
 
-def client(requete):
+def client(fichier):
     def lire_reponse(clientSocket):
         print("Réception et traitement de la réponse du relai")
     # Lire la réponse HTTP ligne par ligne pour récupérer l'en-tête (de longueur variable selon la réponse)
@@ -62,11 +62,11 @@ def client(requete):
                 print("FICHIER INTERDIT D'ACCES")
         else:
             print("Aucun contenu reçu.")    
-
     clientSocket = socket(AF_INET,SOCK_STREAM) #TCP
     try:
         clientSocket.connect((serverName,serverPort))
         #----------------------------------------------
+        requete = "GET " + fichier
         requete = requete.encode('utf-8')
         clientSocket.send(requete)
         try:
@@ -87,7 +87,7 @@ def client(requete):
 #-------------------------------------------------------------------
 # on cree autant de thread que de client
 from random import randint
-requete = ['GET film1.txt',"GET foo.txt","GET foo.txt STATS","GET cochon.txt","GET cochon.txt STATS","GET musique1.txt","GET musique1.txt STATS"]
+requete = ['film1.txt',"foo.txt","foo.txt STATS","cochon.txt","cochon.txt STATS","musique1.txt","musique1.txt STATS"]
 for _ in range(5):
     i = randint(0,len(requete)-1)
     Thread(target=client,args=(requete[i],)).start()
