@@ -1,3 +1,5 @@
+Nils BARRELLON 21401602 - Durée évaluée de travail : 15h
+
 Exercice 1
 
 Version très simpliste du relai : 
@@ -15,7 +17,7 @@ Pour cette version basique, on suppose que les messages sont du texte de longueu
 
 Exercice 2 Pour cet exercice, le code du serveur est inchangé (il cherche le fichier et 
 renvoie son contenu dans une réponse HTTP. Si le fichier est introuvable, il renvoie un message d'erreur 404
-dans sa réponse HTTP.)
+dans sa réponse HTTP.) Les relais fonctionnent en local et sur deux machines différentes.
 
 1) CACHE
 L'ensemble tourne. Le cache conserve bien les réponses correspondant aux différentes requêtes pour ne pas les
@@ -23,7 +25,7 @@ redemander au serveur si jamais mais... uniquement pour des fichiers texte (.txt
 à un souci quand j'ai essayé de ré-écrire un fichier PDF envoyé par le serveur par exemple. 
 Certains octets ne pouvaient être encodés en utf-8 et donc impossibles à écrire dans un fichier.
 J'ai tenté de discriminer fichier txt et autres fichiers mais je n'ai pas réussi :-(
-Le client enregiste le contenu de la réponse HTTP du serveur dans un fichier
+Le client enregistre le contenu de la réponse HTTP du serveur dans un fichier
 nom_du_fichier_copy.txt dans le répertoire courant.
 
 2) SNIFFEUR
@@ -39,7 +41,7 @@ Tout semble fonctionner. Une réponse 400 Bad request est retorunée si un fichi
 Le fichier de log s'affiche donnant combien de fois une URI interdite a été demandée et par qui à quelle heure
 
 4) TUNNEL DE RELAI.
-Tout semble fonctionner même avec plusieurs clients. 
+Tout semble fonctionner même avec plusieurs clients (on tire au sort des requêtes dans une liste). 
 Pour tirer profit des fonctionnalités de chaque relai, il convient de les lancer "dans le bon ordre !"
 - Le relai CACHE est connecté au serveur (127.0.0.1,8080)
 - Le relai PROXY est connecté au relai CACHE (127.0.0.1,55553)
